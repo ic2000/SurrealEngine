@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 enum class PackageFlags : uint32_t
 {
 	NoFlags = 0,

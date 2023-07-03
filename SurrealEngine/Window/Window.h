@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Math/vec.h"
+#include <memory>
 
 class Engine;
 class RenderDevice;
