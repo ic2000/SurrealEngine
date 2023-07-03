@@ -72,6 +72,7 @@ public:
 	XSizeHints* size_hints = nullptr;
 	bool is_window_mapped = false;
 	bool is_fullscreen = false;
+	bool is_focused = false;
 	EInputKey last_press_id = IK_None;
 	Time time_at_last_press = 0;
 
