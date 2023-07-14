@@ -493,6 +493,12 @@ source_group("Thirdparty\\dumb\\src\\it" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOU
 source_group("Thirdparty\\dumb\\include" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/dumb/include/.+")
 source_group("Thirdparty\\dumb\\include\\internal" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/dumb/include/internal/.+")
 
+# Find SDL2
+# TODO: Build SDL2 from source
+find_package(SDL2 REQUIRED)
+include_directories(SDL2Test ${SDL2_INCLUDE_DIRS})
+set(UTENGINE_LIBS ${UTENGINE_LIBS} ${SDL2_LIBRARIES})
+
 include_directories(SurrealEngine Thirdparty Thirdparty/ZVulkan/include Thirdparty/dumb/include)
 
 if(WIN32)
