@@ -19,6 +19,12 @@ public:
 	RenderDevice *GetRenderDevice() override;
 
 private:
+	void MouseButton(const SDL_MouseButtonEvent &button, EInputType type);
+	void MouseWheel(const SDL_MouseWheelEvent &wheel);
+	void MouseMove(const SDL_MouseMotionEvent &motion);
+	EInputKey KeyCodeToInputKey(SDL_Keycode keyCode);
+	void Key(const SDL_KeyboardEvent &key, EInputType type);
+
 	std::unique_ptr<SDL_Window, decltype(&SDL_DestroyWindow)> sdlWindow{
 			nullptr, SDL_DestroyWindow};
 
