@@ -306,6 +306,8 @@ set(UTENGINE_SOURCES
 	SurrealEngine/GameFolder.h
 	SurrealEngine/CommandLine.cpp
 	SurrealEngine/CommandLine.h
+	SurrealEngine/Window/SDL2/SDL2Window.cpp
+	SurrealEngine/Window/SDL2/SDL2Window.h
 )
 
 set(UTENGINE_WIN32_SOURCES
