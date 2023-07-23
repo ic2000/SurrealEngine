@@ -14,6 +14,7 @@
 #include <zvulkan/vulkancompatibledevice.h>
 #include <zvulkan/vulkansurface.h>
 
+
 SDL2Window::SDL2Window(Engine *engine)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -83,6 +84,8 @@ void SDL2Window::OpenWindow(int width, int height, bool fullscreen)
 
 	auto surface = std::make_shared<VulkanSurface>(instance, surfaceHandle);
 	rendDevice = RenderDevice::Create(this, surface);
+
+	InitImGui(instance);
 }
 
 void SDL2Window::CloseWindow()
@@ -147,6 +150,12 @@ void SDL2Window::Tick()
 }
 
 RenderDevice *SDL2Window::GetRenderDevice() { return rendDevice.get(); }
+
+void SDL2Window::InitImGui(std::shared_ptr<VulkanInstance> instance)
+{
+	static_cast<VulkanRenderDevice *>(rendDevice.get())->InitImGui(sdlWindow.get(), instance->Instance);
+	std::cout << __PRETTY_FUNCTION__ << std::endl;
+}
 
 void SDL2Window::MouseButton(const SDL_MouseButtonEvent &button,
 														 EInputType type)

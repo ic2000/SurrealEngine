@@ -8,12 +8,14 @@
 #include "DescriptorSetManager.h"
 #include "FramebufferManager.h"
 #include "RenderPassManager.h"
+#include "SDL_video.h"
 #include "SamplerManager.h"
 #include "ShaderManager.h"
 #include "TextureManager.h"
 #include "UploadManager.h"
 #include "Math/mat.h"
 #include "Math/vec.h"
+#include <SDL2/SDL.h>
 
 class CachedTexture;
 
@@ -37,6 +39,9 @@ public:
 	void PrecacheTexture(FTextureInfo& Info, uint32_t PolyFlags) override;
 	bool SupportsTextureFormat(TextureFormat Format) override;
 	void UpdateTextureRect(FTextureInfo& Info, int U, int V, int UL, int VL) override;
+
+	void InitImGui(SDL_Window *window, VkInstance instance);
+
 
 	std::shared_ptr<VulkanDevice> Device;
 

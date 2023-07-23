@@ -4,7 +4,10 @@
 #include "RenderDevice/RenderDevice.h"
 #include <SDL2/SDL.h>
 
+#include "RenderDevice/Vulkan/VulkanRenderDevice.h"
+
 #include "Window/Window.h"
+#include "zvulkan/vulkaninstance.h"
 
 class SDL2Window : public DisplayWindow
 {
@@ -19,6 +22,7 @@ public:
 	RenderDevice *GetRenderDevice() override;
 
 private:
+	void InitImGui(std::shared_ptr<VulkanInstance> instance);
 	void MouseButton(const SDL_MouseButtonEvent &button, EInputType type);
 	void MouseWheel(const SDL_MouseWheelEvent &wheel);
 	void MouseMove(const SDL_MouseMotionEvent &motion);
