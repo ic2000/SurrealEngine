@@ -374,9 +374,11 @@ void X11Window::Tick()
 			break;
 		}
 		case FocusIn:
+			is_focused = true;
 			//engine->WindowGotFocus(this);
 			break;
 		case FocusOut:
+			is_focused = false;
 			//if (!HasFocus())	// For an unknown reason, FocusOut is called when clicking on title bar of window
 			//  engine->WindowLostFocus(this);
 			break;
@@ -477,8 +479,11 @@ void X11Window::Tick()
 		}
 	}
 
-	// To do: use XGrabPointer to restrict the pointer to be within the window - or maybe there's a better way to track the mouse than this?
-	XWarpPointer(display, window, window, 0, 0, SizeX, SizeY, SizeX / 2, SizeY / 2);
+	if (is_focused)
+	{
+		// To do: use XGrabPointer to restrict the pointer to be within the window - or maybe there's a better way to track the mouse than this?
+		XWarpPointer(display, window, window, 0, 0, SizeX, SizeY, SizeX / 2, SizeY / 2);
+	}
 
 	bool Paused = false;
 	if (Paused)
