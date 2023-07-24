@@ -4,6 +4,8 @@
 #include "ObjectFlags.h"
 #include "NameString.h"
 #include <functional>
+#include <memory>
+#include <map>
 
 class PackageManager;
 class PackageStream;

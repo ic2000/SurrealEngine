@@ -3,6 +3,7 @@
 #include "vulkanobjects.h"
 #include <cassert>
 #include <set>
+#include <stdexcept>
 
 class VulkanCompatibleDevice;
 
