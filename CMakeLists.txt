@@ -523,3 +523,10 @@ endif()
 add_executable(SurrealEngine WIN32 MACOSX_BUNDLE ${UTENGINE_SOURCES} ${THIRDPARTY_SOURCES})
 target_link_libraries(SurrealEngine ${UTENGINE_LIBS})
 set_target_properties(SurrealEngine PROPERTIES CXX_STANDARD 17)
+
+if (CMAKE_GENERATOR STREQUAL "Ninja")
+	add_custom_command(TARGET SurrealEngine
+		POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E env "PATH=$ENV{PATH}" ninja -C ${CMAKE_BINARY_DIR} -t compdb > ${CMAKE_SOURCE_DIR}/compile_commands.json
+	)
+endif()
