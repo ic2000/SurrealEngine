@@ -306,6 +306,8 @@ set(UTENGINE_SOURCES
 	SurrealEngine/GameFolder.h
 	SurrealEngine/CommandLine.cpp
 	SurrealEngine/CommandLine.h
+	SurrealEngine/Window/SDL3/SDL3window.cpp
+	SurrealEngine/Window/SDL3/SDL3window.h
 )
 
 set(UTENGINE_WIN32_SOURCES
@@ -493,7 +495,11 @@ source_group("Thirdparty\\dumb\\src\\it" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOU
 source_group("Thirdparty\\dumb\\include" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/dumb/include/.+")
 source_group("Thirdparty\\dumb\\include\\internal" REGULAR_EXPRESSION "${CMAKE_CURRENT_SOURCE_DIR}/Thirdparty/dumb/include/internal/.+")
 
-include_directories(SurrealEngine Thirdparty Thirdparty/ZVulkan/include Thirdparty/dumb/include)
+set(SDL_STATIC TRUE)
+add_subdirectory("Thirdparty/SDL3")
+set(UTENGINE_LIBS ${UTENGINE_LIBS} SDL3::SDL3-static)
+
+include_directories(SurrealEngine Thirdparty Thirdparty/ZVulkan/include Thirdparty/dumb/include ${SDL3_SOURCE_DIR}/include)
 
 if(WIN32)
 	set(UTENGINE_SOURCES ${UTENGINE_SOURCES} ${UTENGINE_WIN32_SOURCES})
